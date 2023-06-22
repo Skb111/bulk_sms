@@ -1,21 +1,18 @@
 <?php
-
 // API credentials
-$username = 'your_username';
-$password = 'your_password';
+$apiKey = 'your_api_key';
 
-// SMS details
-$sender = 'YourSenderID';
-$message = 'This is a bulk SMS message.';
-$numbers = ['1234567890', '9876543210', '5555555555']; // Array of recipient numbers
+// Retrieve form data
+$sender = $_POST['sender'];
+$message = $_POST['message'];
+$numbers = $_POST['numbers']; // Assuming 'numbers' is an array of recipient numbers
 
 // API URL
 $url = 'http://api.example.com/sms/send';
 
 // Prepare data
 $data = [
-    'username' => $username,
-    'password' => $password,
+    'apiKey' => $apiKey,
     'sender' => $sender,
     'message' => $message,
     'numbers' => implode(',', $numbers),
@@ -32,15 +29,15 @@ curl_close($ch);
 
 // Process response
 if ($response === false) {
-    echo 'Error occurred during API request: ' . curl_error($ch);
+    $alertMessage = 'Error occurred during API request: ' . curl_error($ch);
 } else {
     $result = json_decode($response, true);
     if ($result['success']) {
-        echo 'SMS sent successfully.';
+        $alertMessage = 'SMS sent successfully.';
     } else {
-        echo 'Failed to send SMS. Error: ' . $result['error'];
+        $alertMessage = 'Failed to send SMS. Error: ' . $result['error'];
     }
 }
 
+echo "<script>alert('$alertMessage');</script>";
 ?>
-
