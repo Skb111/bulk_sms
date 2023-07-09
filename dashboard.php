@@ -6,7 +6,9 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
     header("Location: index.php");
     exit();
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +18,11 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Bulk SMS</title>
     <link rel="stylesheet" href="./dist/output.css">
+    <script type="text/javascript">
+            function preventBack(){window.history.forward()};
+            setTimeout("preventBack()",0);
+                window.onunload=function(){null;}
+    </script>
 </head>
 
 <body>
@@ -55,7 +62,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
                             <div class="sm:col-span-2">
                                 <label for="message"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contacts*</label>
-                                <textarea id="message" rows="4" required
+                                <textarea id="message" rows="4" required name="number"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Paste Numbers here..."></textarea>
                             </div>
@@ -75,7 +82,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
                             </div>
 
                             <div class="flex items-center justify-between sm:col-span-2">
-                                <button
+                                <button name="btn"
                                     class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
 
                             </div>

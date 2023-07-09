@@ -1,43 +1,55 @@
 <?php
-// API credentials
-$apiKey = 'your_api_key';
 
-// Retrieve form data
-$sender = $_POST['sender'];
-$message = $_POST['message'];
-$numbers = $_POST['numbers']; // Assuming 'numbers' is an array of recipient numbers
+if (isset($_POST['btn'])) {
+  $numbers = $_POST['number'];
+  $subject = $_POST['subject'];
+  $message = $_POST['message'];
 
-// API URL
-$url = 'http://api.example.com/sms/send';
+  $apiKey = "My api key";
 
-// Prepare data
-$data = [
-    'apiKey' => $apiKey,
-    'sender' => $sender,
-    'message' => $message,
-    'numbers' => implode(',', $numbers),
-];
+  // Convert the numbers into an array
+  $recipients = explode(',', $numbers);
 
-// Send request
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
+  foreach ($recipients as $recipient) {
+    $data = [
+      'to' => $recipient,
+      'message' => $message,
+      'sender_name' => 'SAlert',
+      'subject' => $subject,
+      'route' => 'dnd'
+    ];
 
-// Process response
-if ($response === false) {
-    $alertMessage = 'Error occurred during API request: ' . curl_error($ch);
-} else {
-    $result = json_decode($response, true);
-    if ($result['success']) {
-        $alertMessage = 'SMS sent successfully.';
+    $jsonData = json_encode($data);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+      CURLOPT_URL => "https://api.sendchamp.com/api/v1/sms/send",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => $jsonData,
+      CURLOPT_HTTPHEADER => [
+        "Accept: application/json",
+        "Content-Type: application/json",
+        "Authorization: Bearer " . $apiKey
+      ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+      echo "cURL Error #:" . $err . "<br>";
     } else {
-        $alertMessage = 'Failed to send SMS. Error: ' . $result['error'];
+      echo "Message sent to " . $recipient . ": " . $response . "<br>";
     }
+  }
 }
 
-echo "<script>alert('$alertMessage');</script>";
 ?>
