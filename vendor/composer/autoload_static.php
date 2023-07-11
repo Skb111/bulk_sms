@@ -26,6 +26,10 @@ class ComposerStaticInit5403c811648da6a6b05dee04c5d80969
             'Vonage\\NexmoBridge\\' => 19,
             'Vonage\\' => 7,
         ),
+        'T' => 
+        array (
+            'Twilio\\' => 7,
+        ),
         'S' => 
         array (
             'StellaMaris\\Clock\\' => 18,
@@ -61,6 +65,10 @@ class ComposerStaticInit5403c811648da6a6b05dee04c5d80969
         array (
             0 => __DIR__ . '/..' . '/vonage/client-core/src',
         ),
+        'Twilio\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
+        ),
         'StellaMaris\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/stella-maris/clock/src',
@@ -71,8 +79,8 @@ class ComposerStaticInit5403c811648da6a6b05dee04c5d80969
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
