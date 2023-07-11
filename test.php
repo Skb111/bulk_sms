@@ -6,8 +6,8 @@ if (isset($_POST['btn'])) {
     
     
     // Replace with the names of your environment variables
-    $accountSidEnv = 'AC2951a0c156002c1d113c1b96b946f3a6';
-    $authTokenEnv = '2c7e951a4c55bf3b5258bf3c37bde9f2';
+    $accountSidEnv = 'SENDERID';
+    $authTokenEnv = 'TOKEN';
     
     // Retrieve the values from environment variables
     $account_sid = $accountSidEnv;
@@ -20,7 +20,7 @@ if (isset($_POST['btn'])) {
     }
     
     // A Twilio number you own with SMS capabilities
-    $twilio_number = "+18339881710";
+    $twilio_number = "+TWILIO PHONE";
     
     $client = new Client($account_sid, $auth_token);
     $client->messages->create(
