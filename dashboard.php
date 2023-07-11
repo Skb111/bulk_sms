@@ -58,7 +58,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
                         <!-- text - end -->
 
                         <!-- form - start -->
-                        <form method="POST" action="msg.php" class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+                        <form method="POST" action="last.php" class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
                             <div class="sm:col-span-2">
                                 <label for="message"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contacts*</label>

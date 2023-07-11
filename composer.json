@@ -1,6 +1,5 @@
 {
     "require": {
-        "twilio/sdk": "^7.5",
-        "vlucas/phpdotenv": "^5.5"
+        "vonage/client": "^4.0"
     }
 }
